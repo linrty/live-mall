@@ -1,0 +1,31 @@
+server:
+  port: 8800
+
+spring:
+  application:
+    name: cloud-live-gateway
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      server-addr: 192.168.2.142:8848
+      config:
+        file-extension: yml
+        # shared-configs:
+
+# 通过gateway聚合swagger文档配置
+knife4j:
+  gateway:
+    # 第一个配置，开启gateway聚合组件
+    enabled: true
+    # 第二行配置，设置聚合模式采用discover服务发现的模式
+    strategy: discover
+    # 服务发现模式的配置
+    discover:
+      # 第三行配置，开启discover模式
+      enabled: true
+      # 聚合所有子服务(swagger2规范)，子服务是3规范则替换为openapi3
+      version: openapi3
+      # 需要排除的微服务(eg:网关服务)
+      excluded-services:
+        - cloud-live-gateway
