@@ -34,6 +34,7 @@
         <knife4j.version>4.4.0</knife4j.version>
         <hutool.version>5.8.11</hutool.version>
         <lombok.version>1.18.22</lombok.version>
+        <flayway.version>6.5.7</flayway.version>
     </properties>
 
     <dependencyManagement>
@@ -76,6 +77,12 @@
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
+            </dependency>
+            <!--flyway-->
+            <dependency>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-core</artifactId>
+                <version>${flyway.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
