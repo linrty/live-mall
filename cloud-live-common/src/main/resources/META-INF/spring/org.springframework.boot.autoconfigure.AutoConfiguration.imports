@@ -1,2 +1,3 @@
 top.linrty.live.common.config.redis.RedisConfig
 top.linrty.live.common.config.nacos.NacosDriverURLProvider
+top.linrty.live.common.utils.RedisSeqIdHelper

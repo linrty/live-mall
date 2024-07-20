@@ -2,13 +2,18 @@ package top.linrty.live.user.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.SessionCallback;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import top.linrty.live.common.domain.dto.UserDTO;
+import top.linrty.live.common.domain.po.KafkaObject;
+import top.linrty.live.common.enums.KafkaCodeEnum;
 import top.linrty.live.user.domain.po.User;
 import top.linrty.live.user.mapper.IUserMapper;
 import top.linrty.live.user.service.IUserService;
@@ -31,6 +36,7 @@ import java.util.stream.Collectors;
  * @Version: 1.0
  **/
 @Service
+@Slf4j
 public class UserServiceImpl extends ServiceImpl<IUserMapper, User> implements IUserService {
 
     @Resource
@@ -38,6 +44,10 @@ public class UserServiceImpl extends ServiceImpl<IUserMapper, User> implements I
 
     @Resource
     private UserProviderCacheKeyBuilder userProviderCacheKeyBuilder;
+
+    @Resource
+    private KafkaTemplate<String, String> kafkaTemplate;
+
     @Override
     public UserDTO getUserById(Long userId) {
         if(userId == null) {
@@ -61,6 +71,12 @@ public class UserServiceImpl extends ServiceImpl<IUserMapper, User> implements I
             return false;
         }
         baseMapper.updateById(BeanUtil.copyProperties(userDTO, User.class));
+        //更改操作，删除缓存
+        redisTemplate.delete(userProviderCacheKeyBuilder.buildUserInfoKey(userDTO.getUserId()));
+        //TODO 计划更改为canal实现延迟双删或双写
+        KafkaObject kafkaObject = new KafkaObject(KafkaCodeEnum.USER_INFO.getCode(), userDTO.getUserId().toString());
+        kafkaTemplate.send("user-delete-cache", JSONUtil.toJsonStr(kafkaObject));
+        log.info("Kafka发送延迟双删消息成功，用户ID：{}", userDTO.getUserId());
         return true;
     }
 
