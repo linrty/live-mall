@@ -1,19 +1,22 @@
-package top.linrty.live.api.clients;
+package top.linrty.live.user.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import top.linrty.live.common.domain.dto.UserDTO;
+import top.linrty.live.user.domain.po.User;
+
+import java.util.List;
+import java.util.Map;
 
 /**
- * @Description: User模块内部调用
+ * @Description: TODO
  * @Author: Linrty
  * @Email: linrty.cn@gmail.com
- * @Date: 2024/7/17 23:04
+ * @Date: 2024/7/20 17:37
  * @Version: 1.0
  **/
-public interface UserClient {
-
+public interface IUserService extends IService<User> {
     /**
      * 根据用户id进行查询
-     *
      * @param userId 用户id
      * @return UserDTO
      */
@@ -32,4 +35,11 @@ public interface UserClient {
      * @return boolean
      */
     boolean insertOne(UserDTO userDTO);
+
+    /**
+     * 批量查询用户信息
+     * @param userIdList 用户ID列表
+     * @return Map<Long, UserDTO>
+     */
+    Map<Long, UserDTO> batchQueryUserInfo(List<Long> userIdList);
 }

@@ -4,5 +4,6 @@
     <inspection_tool class="JavadocDeclaration" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ADDITIONAL_TAGS" value="Description:,Author:,Email:,Date:,Version:" />
     </inspection_tool>
+    <inspection_tool class="VulnerableCodeUsages" enabled="false" level="WARNING" enabled_by_default="false" />
   </profile>
 </component>

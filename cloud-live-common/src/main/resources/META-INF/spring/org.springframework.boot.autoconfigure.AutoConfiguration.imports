@@ -1,1 +1,2 @@
 top.linrty.live.common.config.redis.RedisConfig
+top.linrty.live.common.config.nacos.NacosDriverURLProvider

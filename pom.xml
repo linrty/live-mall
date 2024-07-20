@@ -22,6 +22,7 @@
         <module>cloud-live-common</module>
         <module>cloud-live-api</module>
         <module>cloud-live-gateway</module>
+        <module>cloud-live-user</module>
     </modules>
 
     <properties>
@@ -34,7 +35,9 @@
         <knife4j.version>4.4.0</knife4j.version>
         <hutool.version>5.8.11</hutool.version>
         <lombok.version>1.18.22</lombok.version>
-        <flayway.version>6.5.7</flayway.version>
+        <flyway.version>6.5.7</flyway.version>
+        <sharding.jdbc.version>5.3.2</sharding.jdbc.version>
+        <mybatis-plus.version>3.5.3</mybatis-plus.version>
     </properties>
 
     <dependencyManagement>
@@ -83,6 +86,18 @@
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-core</artifactId>
                 <version>${flyway.version}</version>
+            </dependency>
+            <!--shardingsphere-->
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>shardingsphere-jdbc-core</artifactId>
+                <version>${sharding.jdbc.version}</version>
+            </dependency>
+            <!--mybatis-plus-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

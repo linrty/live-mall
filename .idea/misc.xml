@@ -10,6 +10,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/cloud-live-base/pom.xml" />
+        <option value="$PROJECT_DIR$/live-mall-user/pom.xml" />
       </set>
     </option>
   </component>
