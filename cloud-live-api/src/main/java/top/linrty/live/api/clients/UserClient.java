@@ -1,6 +1,7 @@
 package top.linrty.live.api.clients;
 
 import top.linrty.live.common.domain.dto.UserDTO;
+import top.linrty.live.common.enums.UserTagsEnum;
 
 /**
  * @Description: User模块内部调用
@@ -32,4 +33,31 @@ public interface UserClient {
      * @return boolean
      */
     boolean insertOne(UserDTO userDTO);
+
+    /**
+     * 设置标签
+     *
+     * @param userId 用户id
+     * @param userTagsEnum 标签枚举
+     * @return boolean
+     */
+    boolean setTag(Long userId, UserTagsEnum userTagsEnum);
+
+    /**
+     * 取消标签
+     *
+     * @param userId 用户id
+     * @param userTagsEnum 标签枚举
+     * @return boolean
+     */
+    boolean cancelTag(Long userId,UserTagsEnum userTagsEnum);
+
+    /**
+     * 是否包含某个标签
+     *
+     * @param userId 用户id
+     * @param userTagsEnum 标签枚举
+     * @return boolean
+     */
+    boolean containTag(Long userId,UserTagsEnum userTagsEnum);
 }

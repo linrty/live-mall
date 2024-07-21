@@ -5,6 +5,9 @@ import org.springframework.context.annotation.Conditional;
 import top.linrty.live.common.config.redis.RedisKeyBuilder;
 import top.linrty.live.common.config.redis.RedisKeyLoadMatch;
 
+import static top.linrty.live.common.constants.RedisPrefixKey.USER_INFO_KEY;
+import static top.linrty.live.common.constants.RedisPrefixKey.USER_TAG_LOCK_KEY;
+
 /**
  * @Description: TODO
  * @Author: Linrty
@@ -16,9 +19,11 @@ import top.linrty.live.common.config.redis.RedisKeyLoadMatch;
 @Conditional(RedisKeyLoadMatch.class)
 public class UserProviderCacheKeyBuilder extends RedisKeyBuilder {
 
-    private static final String USER_INFO_KEY = "userInfo";
-
     public String buildUserInfoKey(Long userId) {
         return super.getPrefix() + USER_INFO_KEY + super.getSplitItem() + userId;
+    }
+
+    public String buildTagLockKey(Long userId) {
+        return super.getPrefix() + USER_TAG_LOCK_KEY + super.getSplitItem() + userId;
     }
 }
