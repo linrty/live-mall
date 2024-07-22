@@ -57,12 +57,16 @@ public class UserDelayDeleteConsumer {
     public void consumerTopic(String kafkaObjectJSON) {
         KafkaObject kafkaObject = JSONUtil.toBean(kafkaObjectJSON, KafkaObject.class);
         String code = kafkaObject.getCode();
-        long userId = Long.parseLong(kafkaObject.getUserId());
         log.info("Kafka接收到的json：{}", kafkaObjectJSON);
+        long userId = Long.parseLong(kafkaObject.getUserId());
         if(code.equals(KafkaCodeEnum.USER_INFO.getCode())) {
             DELAY_QUEUE.offer(new DelayedTask(1000,
                     () -> redisTemplate.delete(userProviderCacheKeyBuilder.buildUserInfoKey(userId))));
             log.info("Kafka接收延迟双删消息成功，类别：UserInfo，用户ID：{}", userId);
+        }else if (code.equals(KafkaCodeEnum.USER_TAG_INFO.getCode())){
+            DELAY_QUEUE.offer(new DelayedTask(1000,
+                    () -> redisTemplate.delete(userProviderCacheKeyBuilder.buildTagInfoKey(userId))));
+            log.info("Kafka接收延迟双删消息成功，类别：UserTagInfo，用户ID：{}", userId);
         }
     }
 
