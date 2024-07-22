@@ -10,7 +10,6 @@ import org.redisson.api.RedissonClient;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-import top.linrty.live.common.constants.KafkaCode;
 import top.linrty.live.common.constants.UserTagFieldNameConstants;
 import top.linrty.live.common.domain.dto.UserTagDTO;
 import top.linrty.live.common.domain.po.KafkaObject;
