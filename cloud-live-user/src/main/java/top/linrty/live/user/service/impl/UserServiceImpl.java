@@ -3,7 +3,9 @@ package top.linrty.live.user.service.impl;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.json.JSONUtil;
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.core.RedisOperations;
@@ -19,7 +21,6 @@ import top.linrty.live.user.mapper.IUserMapper;
 import top.linrty.live.user.service.IUserService;
 import top.linrty.live.user.utils.UserProviderCacheKeyBuilder;
 
-import javax.annotation.Resource;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +38,7 @@ import java.util.stream.Collectors;
  **/
 @Service
 @Slf4j
+@DS("write_db")
 public class UserServiceImpl extends ServiceImpl<IUserMapper, User> implements IUserService {
 
     @Resource

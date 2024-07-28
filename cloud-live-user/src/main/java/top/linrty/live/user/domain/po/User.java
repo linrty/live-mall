@@ -8,6 +8,7 @@ import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.media.SchemaProperties;
 import lombok.Data;
+import lombok.experimental.Accessors;
 import org.springframework.data.annotation.Id;
 
 import java.util.Date;
@@ -21,6 +22,7 @@ import java.util.Date;
  **/
 @TableName("t_user")
 @Data
+@Accessors(chain = true)
 public class User {
 
     @Id

@@ -4,7 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import lombok.val;
+import jakarta.annotation.Resource;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -21,8 +21,6 @@ import top.linrty.live.user.service.IUserTagService;
 import top.linrty.live.user.utils.TagInfoUtils;
 import top.linrty.live.user.utils.UserProviderCacheKeyBuilder;
 
-import javax.annotation.Resource;
-import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 /**

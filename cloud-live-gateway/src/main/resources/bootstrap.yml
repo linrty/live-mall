@@ -9,9 +9,15 @@ spring:
   cloud:
     nacos:
       server-addr: 192.168.2.142:8848
+      discovery:
+        namespace: 8ba44785-0cbe-4c7a-97c5-f0abe8371eea
       config:
-        file-extension: yml
-        # shared-configs:
+        file-extension: yaml
+        shared-configs:
+          - data-id: shared-redis.yaml
+        namespace: 8ba44785-0cbe-4c7a-97c5-f0abe8371eea
+      username: nacos
+      password: nacos
 
 # 通过gateway聚合swagger文档配置
 knife4j:

@@ -1,12 +1,12 @@
 package top.linrty.live.user.controller;
 
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import top.linrty.live.common.domain.dto.UserDTO;
 import top.linrty.live.user.service.IUserService;
 
-import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;

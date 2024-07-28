@@ -1,6 +1,5 @@
 package top.linrty.live.common.config.handler;
 
-import com.alibaba.nacos.common.model.RestResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;

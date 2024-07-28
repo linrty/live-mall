@@ -1,5 +1,6 @@
 package top.linrty.live.user.service.impl;
 
+import jakarta.annotation.Resource;
 import org.apache.dubbo.config.annotation.DubboService;
 import top.linrty.live.api.clients.UserClient;
 import top.linrty.live.common.domain.dto.UserDTO;
@@ -7,7 +8,6 @@ import top.linrty.live.common.enums.UserTagsEnum;
 import top.linrty.live.user.service.IUserService;
 import top.linrty.live.user.service.IUserTagService;
 
-import javax.annotation.Resource;
 
 /**
  * @Description: TODO

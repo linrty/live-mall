@@ -1,6 +1,7 @@
 package top.linrty.live.user.utils;
 
 import cn.hutool.json.JSONUtil;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -9,8 +10,7 @@ import top.linrty.live.common.domain.po.KafkaObject;
 import top.linrty.live.common.enums.KafkaCodeEnum;
 import top.linrty.live.common.utils.DelayedTask;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.util.concurrent.*;
 
 /**
