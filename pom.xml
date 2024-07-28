@@ -41,6 +41,8 @@
         <redisson.version>3.17.5</redisson.version>
         <mysql.version>8.0.23</mysql.version>
         <cloopen.version>1.0.4</cloopen.version>
+        <jwt.version>0.9.1</jwt.version>
+        <fastjson2.version>2.0.5.graal</fastjson2.version>
     </properties>
 
     <dependencyManagement>
@@ -124,6 +126,18 @@
                 <groupId>com.cloopen</groupId>
                 <artifactId>java-sms-sdk</artifactId>
                 <version>${cloopen.version}</version>
+            </dependency>
+            <!--jwt-->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jwt.version}</version>
+            </dependency>
+            <!--fastjson2-->
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${fastjson2.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
