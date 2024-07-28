@@ -13,7 +13,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.SessionCallback;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-import top.linrty.live.common.domain.dto.UserDTO;
+import top.linrty.live.common.domain.dto.user.UserDTO;
 import top.linrty.live.common.domain.po.KafkaObject;
 import top.linrty.live.common.enums.KafkaCodeEnum;
 import top.linrty.live.user.domain.po.User;
@@ -38,7 +38,6 @@ import java.util.stream.Collectors;
  **/
 @Service
 @Slf4j
-@DS("write_db")
 public class UserServiceImpl extends ServiceImpl<IUserMapper, User> implements IUserService {
 
     @Resource
@@ -51,6 +50,7 @@ public class UserServiceImpl extends ServiceImpl<IUserMapper, User> implements I
     private KafkaTemplate<String, String> kafkaTemplate;
 
     @Override
+    @DS("read_db")
     public UserDTO getUserById(Long userId) {
         if(userId == null) {
             return null;
@@ -68,6 +68,7 @@ public class UserServiceImpl extends ServiceImpl<IUserMapper, User> implements I
     }
 
     @Override
+    @DS("write_db")
     public boolean updateUserInfo(UserDTO userDTO) {
         if(userDTO == null || userDTO.getUserId() == null) {
             return false;
@@ -83,6 +84,7 @@ public class UserServiceImpl extends ServiceImpl<IUserMapper, User> implements I
     }
 
     @Override
+    @DS("write_db")
     public boolean insertOne(UserDTO userDTO) {
         if(userDTO == null || userDTO.getUserId() == null) {
             return false;
@@ -92,6 +94,7 @@ public class UserServiceImpl extends ServiceImpl<IUserMapper, User> implements I
     }
 
     @Override
+    @DS("read_db")
     public Map<Long, UserDTO> batchQueryUserInfo(List<Long> userIdList) {
         if(CollectionUtil.isEmpty(userIdList)) {
             return Collections.emptyMap();

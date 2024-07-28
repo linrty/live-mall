@@ -7,7 +7,7 @@
     <parent>
         <groupId>top.linrty.live</groupId>
         <artifactId>live-mall</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>cloud-live-user</artifactId>
@@ -28,13 +28,13 @@
         <dependency>
             <groupId>top.linrty.live</groupId>
             <artifactId>cloud-live-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
         <!--common-->
         <dependency>
             <groupId>top.linrty.live</groupId>
             <artifactId>cloud-live-common</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
         <!--nacos discovery-->
         <dependency>
@@ -83,6 +83,63 @@
             <groupId>com.baomidou</groupId>
             <artifactId>dynamic-datasource-spring-boot3-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.cloopen</groupId>
+            <artifactId>java-sms-sdk</artifactId>
+        </dependency>
     </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}-docker</finalName>
+        <plugins>
+            <!--根据Dockerfile文件生成docker镜像-->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.2.0</version>
+                <executions>
+                    <execution>
+                        <id>default</id>
+                        <goals>
+                            <goal>build</goal>
+                            <goal>push</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <!--镜像配置-->
+                <configuration>
+                    <!--配置docker服务器地址和端口-->
+                    <dockerHost>http://192.168.2.142:2375</dockerHost>
+                    <imageTags>
+                        <imageTag>${project.version}</imageTag>
+                    </imageTags>
+                    <imageName>${project.build.finalName}</imageName>
+                    <!--指定Dockerfile文件的位置-->
+                    <dockerDirectory>${project.basedir}/docker</dockerDirectory>
+                    <resources>
+                        <!-- 指定jar包路径，这里对应Dockerfile中复制 jar 包到 docker 容器指定目录配置，也可以写到 Dockerfile 中 -->
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <!-- 将下边目录的内容，拷贝到docker镜像中 -->
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>
+            <!--将SpringBoot应用打包成jar包-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

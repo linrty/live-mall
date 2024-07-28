@@ -4,7 +4,7 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import top.linrty.live.common.domain.dto.UserDTO;
+import top.linrty.live.common.domain.dto.user.UserDTO;
 import top.linrty.live.user.service.IUserService;
 
 import java.util.Arrays;

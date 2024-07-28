@@ -1,7 +1,7 @@
 package top.linrty.live.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import top.linrty.live.common.domain.dto.UserDTO;
+import top.linrty.live.common.domain.dto.user.UserDTO;
 import top.linrty.live.user.domain.po.User;
 
 import java.util.List;

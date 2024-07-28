@@ -1,9 +1,10 @@
-package top.linrty.live.common.domain.dto;
+package top.linrty.live.common.domain.dto.user;
 
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -18,6 +19,7 @@ import java.util.Date;
 @Schema(name = "UserDTO", description = "用户信息传输对象")
 public class UserDTO implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 4079363033445460398L;
 
     @Schema(description = "用户id")

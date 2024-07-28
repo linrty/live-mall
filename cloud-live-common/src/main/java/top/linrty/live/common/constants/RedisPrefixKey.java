@@ -16,4 +16,6 @@ public class RedisPrefixKey {
     public static final String USER_PHONE_LIST_KEY = "userPhoneList";
     public static final String USER_PHONE_OBJ_KEY = "userPhoneObj";
     public static final String USER_LOGIN_TOKEN_KEY = "userLoginToken";
+
+    public static final String USER_LOGIN_CODE_KEY = "userLoginCode";
 }

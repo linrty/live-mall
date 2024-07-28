@@ -3,7 +3,9 @@ package top.linrty.live.user.service.impl;
 import jakarta.annotation.Resource;
 import org.apache.dubbo.config.annotation.DubboService;
 import top.linrty.live.api.clients.UserClient;
-import top.linrty.live.common.domain.dto.UserDTO;
+import top.linrty.live.common.domain.dto.user.MsgCheckDTO;
+import top.linrty.live.common.domain.dto.user.UserDTO;
+import top.linrty.live.common.enums.MsgSendResultEnum;
 import top.linrty.live.common.enums.UserTagsEnum;
 import top.linrty.live.user.service.IUserService;
 import top.linrty.live.user.service.IUserTagService;
@@ -53,5 +55,20 @@ public class UserClientImpl implements UserClient {
     @Override
     public boolean containTag(Long userId, UserTagsEnum userTagsEnum) {
         return userTagService.containTag(userId, userTagsEnum);
+    }
+
+    @Override
+    public MsgSendResultEnum sendLoginCode(String phone) {
+        return null;
+    }
+
+    @Override
+    public MsgCheckDTO checkLoginCode(String phone, Integer code) {
+        return null;
+    }
+
+    @Override
+    public void insertOne(String phone, Integer code) {
+
     }
 }

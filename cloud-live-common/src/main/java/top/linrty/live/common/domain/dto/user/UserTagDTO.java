@@ -1,7 +1,8 @@
-package top.linrty.live.common.domain.dto;
+package top.linrty.live.common.domain.dto.user;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -13,6 +14,7 @@ import java.io.Serializable;
  **/
 public class UserTagDTO implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1662020070373016278L;
 
     @Schema(description = "用户id")

@@ -11,7 +11,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import top.linrty.live.common.constants.UserTagFieldNameConstants;
-import top.linrty.live.common.domain.dto.UserTagDTO;
+import top.linrty.live.common.domain.dto.user.UserTagDTO;
 import top.linrty.live.common.domain.po.KafkaObject;
 import top.linrty.live.common.enums.KafkaCodeEnum;
 import top.linrty.live.common.enums.UserTagsEnum;
