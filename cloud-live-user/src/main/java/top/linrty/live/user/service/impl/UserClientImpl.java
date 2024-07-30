@@ -7,6 +7,7 @@ import top.linrty.live.common.domain.dto.user.MsgCheckDTO;
 import top.linrty.live.common.domain.dto.user.UserDTO;
 import top.linrty.live.common.enums.MsgSendResultEnum;
 import top.linrty.live.common.enums.UserTagsEnum;
+import top.linrty.live.user.service.ISmsService;
 import top.linrty.live.user.service.IUserService;
 import top.linrty.live.user.service.IUserTagService;
 
@@ -26,6 +27,11 @@ public class UserClientImpl implements UserClient {
 
     @Resource
     private IUserTagService userTagService;
+
+    @Resource
+    private ISmsService smsService;
+
+
 
     @Override
     public UserDTO getUserById(Long userId) {
@@ -59,16 +65,11 @@ public class UserClientImpl implements UserClient {
 
     @Override
     public MsgSendResultEnum sendLoginCode(String phone) {
-        return null;
+        return smsService.sendLoginCode(phone);
     }
 
     @Override
     public MsgCheckDTO checkLoginCode(String phone, Integer code) {
-        return null;
-    }
-
-    @Override
-    public void insertOne(String phone, Integer code) {
-
+        return smsService.checkLoginCode(phone, code);
     }
 }

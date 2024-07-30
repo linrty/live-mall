@@ -2,6 +2,7 @@ package top.linrty.live.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import top.linrty.live.common.domain.dto.user.UserDTO;
+import top.linrty.live.common.domain.dto.user.UserLoginVO;
 import top.linrty.live.user.domain.po.User;
 
 import java.util.List;
@@ -15,6 +16,16 @@ import java.util.Map;
  * @Version: 1.0
  **/
 public interface IUserService extends IService<User> {
+
+    /**
+     * 发送登录验证码
+     *
+     * @param phone
+     * @return
+     */
+    void sendLoginCode(String phone);
+
+    UserLoginVO login(String phone, Integer code);
     /**
      * 根据用户id进行查询
      * @param userId 用户id

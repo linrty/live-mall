@@ -2,6 +2,7 @@ package top.linrty.live.common.config.auth;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -15,14 +16,12 @@ import java.util.List;
  **/
 @Component
 @Data
+@ConfigurationProperties(prefix = "auth")
 public class AuthConfig {
 
-    @Value("${auth.enabled}")
     private boolean enabled;
 
-    @Value("${auth.include-paths}")
     private List<String> includePaths;
 
-    @Value("${auth.exclude-paths}")
     private List<String> excludePaths;
 }

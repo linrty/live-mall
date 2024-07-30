@@ -2,3 +2,7 @@ top.linrty.live.common.config.redis.RedisConfig
 top.linrty.live.common.utils.RedisSeqIdHelper
 top.linrty.live.common.config.handler.GlobalExceptionHandlerAdvice
 top.linrty.live.common.config.redisson.RedissonConfig
+top.linrty.live.common.config.auth.AuthConfig
+top.linrty.live.common.config.auth.JwtConfig
+top.linrty.live.common.utils.JwtUtils
+top.linrty.live.common.config.WebConfig

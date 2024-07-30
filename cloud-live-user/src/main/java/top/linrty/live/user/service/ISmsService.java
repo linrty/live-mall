@@ -27,12 +27,4 @@ public interface ISmsService {
      * @return
      */
     MsgCheckDTO checkLoginCode(String phone, Integer code);
-
-    /**
-     * 插入一条短信记录
-     *
-     * @param phone
-     * @param code
-     */
-    void insertOne(String phone, Integer code);
 }

@@ -14,6 +14,7 @@ spring:
           - data-id: shared-redis.yaml
           - data-id: shared-kafka.yaml
           - data-id: shared-dubbo.yaml
+          - data-id: shared-jwt.yaml
         namespace: 8ba44785-0cbe-4c7a-97c5-f0abe8371eea
         username: nacos
         password: nacos

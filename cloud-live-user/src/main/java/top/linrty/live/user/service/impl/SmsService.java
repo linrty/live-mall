@@ -3,19 +3,16 @@ package top.linrty.live.user.service.impl;
 import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
-import com.baomidou.dynamic.datasource.annotation.DS;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cloopen.rest.sdk.BodyType;
 import com.cloopen.rest.sdk.CCPRestSmsSDK;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import top.linrty.live.common.config.redis.RedisKeyTime;
 import top.linrty.live.common.domain.dto.user.MsgCheckDTO;
 import top.linrty.live.common.enums.MsgSendResultEnum;
 import top.linrty.live.common.utils.ThreadPoolManager;
-import top.linrty.live.user.domain.po.Sms;
-import top.linrty.live.user.mapper.ISmsMapper;
 import top.linrty.live.user.service.ISmsService;
 import top.linrty.live.user.utils.MsgProviderCacheKeyBuilder;
 
@@ -32,10 +29,7 @@ import java.util.concurrent.TimeUnit;
  **/
 @Service
 @Slf4j
-public class SmsService extends ServiceImpl<ISmsMapper, Sms> implements ISmsService {
-
-    @Resource
-    private ISmsMapper smsMapper;
+public class SmsService implements ISmsService {
 
     @Resource
     private RedisTemplate<String, Integer> redisTemplate;
@@ -55,13 +49,10 @@ public class SmsService extends ServiceImpl<ISmsMapper, Sms> implements ISmsServ
             return MsgSendResultEnum.SEND_FAIL;
         }
         int code = RandomUtil.randomInt(1000, 9999);
-        redisTemplate.opsForValue().set(key, code, 60, TimeUnit.SECONDS);
+        redisTemplate.opsForValue().set(key, code, RedisKeyTime.EXPIRE_TIME_ONE_MINUTE, TimeUnit.SECONDS);
         // 发送验证码(模拟实现)
         ThreadPoolManager.commonAsyncPool.execute(() -> {
-            boolean sendStatus = this.sendSmsToCCP(phone, code);
-            if (sendStatus) {
-                this.insertOne(phone, code);
-            }
+            this.sendSmsToCCP(phone, code);
         });
         return MsgSendResultEnum.SEND_SUCCESS;
     }
@@ -83,15 +74,6 @@ public class SmsService extends ServiceImpl<ISmsMapper, Sms> implements ISmsServ
             return new MsgCheckDTO(true, "验证码校验成功");
         }
         return new MsgCheckDTO(false, "验证码校验失败");
-    }
-
-    @Override
-    @DS("write_db")
-    public void insertOne(String phone, Integer code) {
-        Sms sms = new Sms();
-        sms.setPhone(phone);
-        sms.setCode(code);
-        smsMapper.insert(sms);
     }
 
     /**

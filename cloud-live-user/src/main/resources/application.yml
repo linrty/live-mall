@@ -8,5 +8,5 @@ spring:
 
 live:
   name: 用户模块
-  packages: top.linrty.live.user
+  packages: top.linrty.live.user.controller
   dbname: live_mall_user

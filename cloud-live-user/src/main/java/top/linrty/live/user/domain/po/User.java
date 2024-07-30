@@ -30,6 +30,10 @@ public class User {
     @TableId(type = IdType.INPUT)
     private Long userId;
 
+    @Schema(description = "用户手机号")
+    @TableField("phone")
+    private String phone;
+
     @Schema(description = "用户昵称")
     @TableField("nick_name")
     private String nickName;
