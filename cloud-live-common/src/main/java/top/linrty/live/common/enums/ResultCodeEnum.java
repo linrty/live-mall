@@ -22,7 +22,7 @@ public enum ResultCodeEnum {
 
     UNKNOWN_ERROR(999,"unknown-error"),
 
-    NOT_LOGIN_ERROR(401, "not-login-error")
+    NOT_LOGIN_ERROR(401, "not-login-error"),
     ;
 
     private ResultCodeEnum(int code, String msg) {

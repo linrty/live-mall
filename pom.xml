@@ -23,6 +23,7 @@
         <module>cloud-live-api</module>
         <module>cloud-live-gateway</module>
         <module>cloud-live-user</module>
+        <module>cloud-live-im</module>
     </modules>
 
     <properties>
