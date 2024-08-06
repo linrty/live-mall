@@ -1,7 +1,7 @@
 package top.linrty.live.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import top.linrty.live.common.enums.UserTagsEnum;
+import top.linrty.live.common.enums.user.UserTagsEnum;
 import top.linrty.live.user.domain.po.UserTag;
 
 /**

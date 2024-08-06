@@ -24,6 +24,10 @@
         <module>cloud-live-gateway</module>
         <module>cloud-live-user</module>
         <module>cloud-live-im</module>
+        <module>cloud-live-client</module>
+        <module>cloud-live-msg</module>
+        <module>cloud-live-router</module>
+        <module>cloud-live-living</module>
     </modules>
 
     <properties>

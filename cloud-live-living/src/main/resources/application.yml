@@ -1,0 +1,12 @@
+server:
+  port: 8084
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    active: dev
+
+live:
+  name: 直播模块
+  packages: top.linrty.live.living.controller
+  dbname: live_mall_living

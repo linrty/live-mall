@@ -1,7 +1,7 @@
 package top.linrty.live.im.handler;
 
+import top.linrty.live.common.domain.po.im.IMMsg;
 import io.netty.channel.ChannelHandlerContext;
-import top.linrty.live.im.domain.po.ImMsg;
 
 /**
  * @Description: TODO
@@ -11,5 +11,5 @@ import top.linrty.live.im.domain.po.ImMsg;
  * @Version: 1.0
  **/
 public interface IMBaseHandler {
-    void handler(ChannelHandlerContext ctx, ImMsg imMsg);
+    void handler(ChannelHandlerContext ctx, IMMsg imMsg);
 }

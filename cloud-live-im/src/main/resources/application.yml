@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    active: dev
+
+live:
+  im:
+    port: 8082
+    ws:
+      port: 8083
+  name: IM模块
+  packages: top.linrty.live.im
+  dbname: live_mall_im

@@ -3,9 +3,13 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/cloud-live-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cloud-live-base/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cloud-live-client/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cloud-live-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cloud-live-gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cloud-live-im/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cloud-live-living/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cloud-live-msg/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cloud-live-router/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cloud-live-user/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/live-mall-user/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />

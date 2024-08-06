@@ -2,8 +2,11 @@ package top.linrty.live.api.clients;
 
 import top.linrty.live.common.domain.dto.user.MsgCheckDTO;
 import top.linrty.live.common.domain.dto.user.UserDTO;
-import top.linrty.live.common.enums.MsgSendResultEnum;
-import top.linrty.live.common.enums.UserTagsEnum;
+import top.linrty.live.common.enums.im.MsgSendResultEnum;
+import top.linrty.live.common.enums.user.UserTagsEnum;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @Description: User模块内部调用
@@ -79,4 +82,7 @@ public interface UserClient {
      * @return
      */
     MsgCheckDTO checkLoginCode(String phone, Integer code);
+
+
+    Map<Long, UserDTO> batchQueryUserInfo(List<Long> userIds);
 }

@@ -1,7 +1,7 @@
 package top.linrty.live.common.enums;
 
 /**
- * @Description: TODO
+ * @Description: Kafka消息枚举
  * @Author: Linrty
  * @Email: linrty.cn@gmail.com
  * @Date: 2024/7/20 23:35

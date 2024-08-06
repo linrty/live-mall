@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: cloud-live-client # 服务名称
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      server-addr: 192.168.2.142:8848 # nacos地址
+      config:
+        file-extension: yaml # 文件后缀名
+        shared-configs: # 共享配置
+          - data-id: shared-jwt.yaml
+          - data-id: shared-redis.yaml
+        namespace: 8ba44785-0cbe-4c7a-97c5-f0abe8371eea
+        username: nacos
+        password: nacos

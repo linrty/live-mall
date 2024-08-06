@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    active: dev
+
+live:
+  im:
+    port: 9083
+  name: IMClient
+  packages: top.linrty.live.
+  dbname: live_mall_im

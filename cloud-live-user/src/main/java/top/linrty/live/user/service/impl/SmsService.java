@@ -11,7 +11,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import top.linrty.live.common.config.redis.RedisKeyTime;
 import top.linrty.live.common.domain.dto.user.MsgCheckDTO;
-import top.linrty.live.common.enums.MsgSendResultEnum;
+import top.linrty.live.common.enums.im.MsgSendResultEnum;
 import top.linrty.live.common.utils.ThreadPoolManager;
 import top.linrty.live.user.service.ISmsService;
 import top.linrty.live.user.utils.MsgProviderCacheKeyBuilder;

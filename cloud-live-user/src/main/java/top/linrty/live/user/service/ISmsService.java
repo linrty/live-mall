@@ -1,7 +1,7 @@
 package top.linrty.live.user.service;
 
 import top.linrty.live.common.domain.dto.user.MsgCheckDTO;
-import top.linrty.live.common.enums.MsgSendResultEnum;
+import top.linrty.live.common.enums.im.MsgSendResultEnum;
 
 /**
  * @Description: TODO

@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: cloud-live-im # 服务名称
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      server-addr: 192.168.2.142:8848 # nacos地址
+      config:
+        file-extension: yaml # 文件后缀名
+        shared-configs: # 共享配置
+          - data-id: shared-jdbc.yaml
+          - data-id: shared-swagger.yaml
+          - data-id: shared-redis.yaml
+          - data-id: shared-kafka.yaml
+          - data-id: shared-dubbo.yaml
+          - data-id: shared-jwt.yaml
+        namespace: 8ba44785-0cbe-4c7a-97c5-f0abe8371eea
+        username: nacos
+        password: nacos
+
+dubbo:
+  consumer:
+    cluster: imRouter

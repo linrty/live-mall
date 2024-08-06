@@ -6,3 +6,4 @@ top.linrty.live.common.config.auth.AuthConfig
 top.linrty.live.common.config.auth.JwtConfig
 top.linrty.live.common.utils.JwtUtils
 top.linrty.live.common.config.WebConfig
+top.linrty.live.common.config.mybatis.MybatisPageConfig

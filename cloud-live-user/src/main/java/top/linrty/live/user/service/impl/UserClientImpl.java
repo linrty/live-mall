@@ -5,11 +5,14 @@ import org.apache.dubbo.config.annotation.DubboService;
 import top.linrty.live.api.clients.UserClient;
 import top.linrty.live.common.domain.dto.user.MsgCheckDTO;
 import top.linrty.live.common.domain.dto.user.UserDTO;
-import top.linrty.live.common.enums.MsgSendResultEnum;
-import top.linrty.live.common.enums.UserTagsEnum;
+import top.linrty.live.common.enums.im.MsgSendResultEnum;
+import top.linrty.live.common.enums.user.UserTagsEnum;
 import top.linrty.live.user.service.ISmsService;
 import top.linrty.live.user.service.IUserService;
 import top.linrty.live.user.service.IUserTagService;
+
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -71,5 +74,10 @@ public class UserClientImpl implements UserClient {
     @Override
     public MsgCheckDTO checkLoginCode(String phone, Integer code) {
         return smsService.checkLoginCode(phone, code);
+    }
+
+    @Override
+    public Map<Long, UserDTO> batchQueryUserInfo(List<Long> userIds) {
+        return userService.batchQueryUserInfo(userIds);
     }
 }
