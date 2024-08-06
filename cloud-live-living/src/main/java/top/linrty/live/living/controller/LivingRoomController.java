@@ -4,6 +4,7 @@ import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import top.linrty.live.common.anno.RequestLimit;
 import top.linrty.live.common.domain.dto.PageReqDTO;
 import top.linrty.live.common.domain.dto.living.LivingRoomReqDTO;
 import top.linrty.live.common.domain.vo.CommonRespVO;
@@ -29,6 +30,7 @@ public class LivingRoomController {
     private ILivingRoomService livingRoomService;
 
     @PostMapping("/startingLiving")
+    @RequestLimit(limit = 1, second = 10, msg = "开播请求过于频繁，请稍后再试")
     public CommonRespVO startingLiving(Integer type) {
         if (type == null) {
             throw new ParamException("需要给定直播间类型");
@@ -40,6 +42,7 @@ public class LivingRoomController {
     }
 
     @PostMapping("/closeLiving")
+    @RequestLimit(limit = 1, second = 10, msg = "关播请求过于频繁，请稍后再试")
     public CommonRespVO closeLiving(Integer roomId) {
         if (roomId == null) {
             throw new ParamException("需要给定直播间id");

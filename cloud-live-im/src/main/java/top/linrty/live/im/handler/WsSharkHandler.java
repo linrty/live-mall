@@ -32,7 +32,7 @@ import top.linrty.live.im.handler.impl.LoginMsgHandler;
 @Slf4j
 public class WsSharkHandler extends ChannelInboundHandlerAdapter {
 
-    @Value("${qiyu.im.ws.port}")
+    @Value("${live.im.ws.port}")
     private int port;
 
     @Resource

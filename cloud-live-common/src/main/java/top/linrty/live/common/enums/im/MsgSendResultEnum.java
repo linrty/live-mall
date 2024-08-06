@@ -13,21 +13,15 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum MsgSendResultEnum {
-    SEND_SUCCESS(0,"成功"),
 
-    SEND_FAIL(1,"发送失败"),
+    SEND_SUCCESS(1000,"成功"),
 
-    MSG_PARAM_ERROR(2,"消息格式异常");
+    SEND_FAIL(1001,"发送失败"),
 
-    private int code;
-    private String desc;
+    MSG_PARAM_ERROR(1002,"消息格式异常");
 
-    public void setCode(int code) {
-        this.code = code;
-    }
+    private final int code;
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
+    private final String desc;
 
 }

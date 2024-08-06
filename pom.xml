@@ -28,6 +28,7 @@
         <module>cloud-live-msg</module>
         <module>cloud-live-router</module>
         <module>cloud-live-living</module>
+        <module>cloud-live-pay</module>
     </modules>
 
     <properties>

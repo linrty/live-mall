@@ -14,9 +14,9 @@ import lombok.Getter;
 @Getter
 public enum LivingRoomTypeEnum {
 
-    DEFAULT_LIVING_ROOM(1, "默认直播间"),
+    DEFAULT_LIVING_ROOM(1001, "默认直播间"),
 
-    PK_LIVING_ROOM(2, "PK直播间"),
+    PK_LIVING_ROOM(1002, "PK直播间"),
     ;
 
     private final Integer code;

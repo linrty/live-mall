@@ -1,5 +1,6 @@
 package top.linrty.live.common.enums.im;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
@@ -10,6 +11,7 @@ import lombok.Getter;
  * @Version: 1.0
  **/
 @Getter
+@AllArgsConstructor
 public enum IMMsgCodeEnum {
 
     WS_SHARD_MSG(1000, "首次建立ws连接消息包"),
@@ -31,8 +33,4 @@ public enum IMMsgCodeEnum {
     private final int code;
 
     private final String desc;
-    IMMsgCodeEnum(int code, String desc) {
-        this.code = code;
-        this.desc = desc;
-    }
 }
