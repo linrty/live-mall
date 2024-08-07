@@ -1,5 +1,6 @@
 package top.linrty.live.pay.service.impl;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class PayTopicServiceImpl implements IPayTopicService {
     private PayTopicMapper payTopicMapper;
 
     @Override
+    @DS("read_db")
     public PayTopic getByCode(Integer code) {
         LambdaQueryWrapper<PayTopic> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(PayTopic::getBizCode, code);

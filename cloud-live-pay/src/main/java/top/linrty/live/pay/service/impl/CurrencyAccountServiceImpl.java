@@ -1,5 +1,6 @@
 package top.linrty.live.pay.service.impl;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
@@ -102,11 +103,13 @@ public class CurrencyAccountServiceImpl implements ICurrencyAccountService {
     }
 
     @Override
+    @DS("read_db")
     public CurrencyAccountVO getByUserId(Long userId) {
         return ConvertBeanUtils.convert(currencyAccountMapper.selectById(userId), CurrencyAccountVO.class);
     }
 
     @Override
+    @DS("read_db")
     public Integer getBalance(Long userId) {
         String cacheKey = payProviderCacheKeyBuilder.buildUserBalance(userId);
         Integer balance = (Integer) redisTemplate.opsForValue().get(cacheKey);

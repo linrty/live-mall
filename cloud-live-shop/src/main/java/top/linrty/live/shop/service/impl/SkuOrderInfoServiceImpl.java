@@ -3,6 +3,7 @@ package top.linrty.live.shop.service.impl;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSON;
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import jakarta.annotation.Resource;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -66,6 +67,7 @@ public class SkuOrderInfoServiceImpl implements ISkuOrderInfoService {
 
 
     @Override
+    @DS("read_db")
     public SkuOrderInfoRespVO queryByUserIdAndRoomId(Long userId, Integer roomId) {
         LambdaQueryWrapper<SkuOrderInfo> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(SkuOrderInfo::getUserId, userId);
@@ -94,6 +96,7 @@ public class SkuOrderInfoServiceImpl implements ISkuOrderInfoService {
     }
 
     @Override
+    @DS("read_db")
     public SkuOrderInfoRespVO queryByOrderId(Long orderId) {
         return ConvertBeanUtils.convert(skuOrderInfoMapper.selectById(orderId), SkuOrderInfoRespVO.class);
     }

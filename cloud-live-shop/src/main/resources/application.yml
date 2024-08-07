@@ -1,0 +1,12 @@
+server:
+  port: 8087
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    active: dev
+
+live:
+  name: 购物模块
+  packages: top.linrty.live.shop.controller
+  dbname: live_mall_shop

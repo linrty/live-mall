@@ -52,6 +52,7 @@ public class GiftConfigServiceImpl implements IGiftConfigService {
     private RedissonClient redissonClient;
 
     @Override
+    @DS("read_db")
     public GiftConfigVO getByGiftId(Integer giftId) {
         LambdaQueryWrapper<GiftConfig> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(GiftConfig::getGiftId, giftId);
@@ -62,6 +63,7 @@ public class GiftConfigServiceImpl implements IGiftConfigService {
     }
 
     @Override
+    @DS("read_db")
     public List<GiftConfigVO> queryGiftList() {
         String cacheKey = giftProviderCacheKeyBuilder.buildGiftListCacheKey();
         List<GiftConfigVO> giftConfigVOS = redisTemplate.opsForList().range(cacheKey, 0, -1).stream().map(x -> (GiftConfigVO) x).collect(Collectors.toList());

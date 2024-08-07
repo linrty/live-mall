@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: dev
+
+live:
+  name: MSG模块
+  packages: top.linrty.live.msg
+  dbname: live_mall_im

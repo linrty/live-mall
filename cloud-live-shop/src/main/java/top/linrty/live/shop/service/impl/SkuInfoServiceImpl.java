@@ -1,6 +1,7 @@
 package top.linrty.live.shop.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -51,6 +52,7 @@ public class SkuInfoServiceImpl implements ISkuInfoService {
     private RedisTemplate<String, Object> redisTemplate;
 
     @Override
+    @DS("read_db")
     public List<SkuInfo> queryBySkuIds(List<Long> skuIdList) {
         LambdaQueryWrapper<SkuInfo> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.in(SkuInfo::getSkuId, skuIdList);
@@ -59,6 +61,7 @@ public class SkuInfoServiceImpl implements ISkuInfoService {
     }
 
     @Override
+    @DS("read_db")
     public SkuInfo queryBySkuId(Long skuId) {
         LambdaQueryWrapper<SkuInfo> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.in(SkuInfo::getSkuId, skuId);
@@ -68,6 +71,7 @@ public class SkuInfoServiceImpl implements ISkuInfoService {
     }
 
     @Override
+    @DS("read_db")
     public List<SkuInfoVO> queryByAnchorId(Long anchorId) {
         // 先从缓存中获取主播下得商品信息
         String key = shopProviderCacheKeyBuilder.buildSkuDetailInfoMap(anchorId);
@@ -97,6 +101,7 @@ public class SkuInfoServiceImpl implements ISkuInfoService {
     }
 
     @Override
+    @DS("read_db")
     public SkuDetailInfoDTO queryBySkuId(Long skuId, Long anchorId) {
         String cacheKey = shopProviderCacheKeyBuilder.buildSkuDetailInfoMap(anchorId);
         SkuInfoDTO skuInfoDTO = (SkuInfoDTO) redisTemplate.opsForHash().get(cacheKey, String.valueOf(skuId));

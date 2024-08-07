@@ -1,6 +1,7 @@
 package top.linrty.live.shop.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
+import com.baomidou.dynamic.datasource.annotation.DS;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -86,6 +87,7 @@ public class ShopCarServiceImpl implements IShopCarService {
     }
 
     @Override
+    @DS("read_db")
     public ShopCarRespVO getCarInfo(ShopCarReqDTO shopCarReqDTO) {
         Long userId = Long.parseLong(RequestContext.get(HTTPKeyConstants.HTTP_HEADER_USER_ID).toString());
         shopCarReqDTO.setUserId(userId);

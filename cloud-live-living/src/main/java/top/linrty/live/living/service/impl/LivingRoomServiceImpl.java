@@ -3,6 +3,7 @@ package top.linrty.live.living.service.impl;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.BooleanUtil;
 import com.alibaba.fastjson2.JSONObject;
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -136,6 +137,7 @@ public class LivingRoomServiceImpl implements ILivingRoomService {
     }
 
     @Override
+    @DS("read_db")
     public LivingRoomRespDTO queryByRoomId(Integer roomId) {
         String key = livingProviderCacheKeyBuilder.buildLivingRoomObj(roomId);
         LivingRoomRespDTO respDTO = (LivingRoomRespDTO) redisTemplate.opsForValue().get(key);
@@ -279,6 +281,7 @@ public class LivingRoomServiceImpl implements ILivingRoomService {
     }
 
     @Override
+    @DS("read_db")
     public List<Long> queryUserIdsByRoomId(LivingRoomReqDTO livingRoomReqDTO) {
         Integer roomId = livingRoomReqDTO.getRoomId();
         Integer appId = livingRoomReqDTO.getAppId();
@@ -345,12 +348,14 @@ public class LivingRoomServiceImpl implements ILivingRoomService {
     }
 
     @Override
+    @DS("read_db")
     public Long queryOnlinePkUserId(Integer roomId) {
         String cacheKey = livingProviderCacheKeyBuilder.buildLivingOnlinePk(roomId);
         return (Long) redisTemplate.opsForValue().get(cacheKey);
     }
 
     @Override
+    @DS("read_db")
     public LivingRoomRespDTO queryByAnchorId(Long anchorId) {
         LambdaQueryWrapper<LivingRoom> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(LivingRoom::getAnchorId, anchorId);

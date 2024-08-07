@@ -3,6 +3,7 @@ package top.linrty.live.user.service.impl;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.json.JSONUtil;
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import jakarta.annotation.Resource;
 import org.redisson.api.RLock;
@@ -36,7 +37,7 @@ public class UserTagServiceImpl extends ServiceImpl<IUserTagMapper, UserTag> imp
     @Resource
     private RedisTemplate<String, String> redisTemplate;
 
-    @Resource(name = "redisTemplate")
+    @Resource
     private RedisTemplate<String, UserTagDTO> userTagDTORedisTemplate;
 
     @Resource
@@ -100,6 +101,7 @@ public class UserTagServiceImpl extends ServiceImpl<IUserTagMapper, UserTag> imp
     }
 
     @Override
+    @DS("read_db")
     public boolean containTag(Long userId, UserTagsEnum userTagsEnum) {
         UserTag userTag = baseMapper.selectById(userId);
         if (userTag == null) {
@@ -121,6 +123,7 @@ public class UserTagServiceImpl extends ServiceImpl<IUserTagMapper, UserTag> imp
      * @param userId
      * @return
      */
+    @DS("read_db")
     private UserTagDTO queryTagInfoFromRedisCache(Long userId) {
         String key = userProviderCacheKeyBuilder.buildTagInfoKey(userId);
         UserTagDTO userTagDTO = userTagDTORedisTemplate.opsForValue().get(key);

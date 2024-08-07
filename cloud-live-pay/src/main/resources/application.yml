@@ -1,0 +1,12 @@
+server:
+  port: 8086
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    active: dev
+
+live:
+  name: 支付模块
+  packages: top.linrty.live.pay.controller
+  dbname: live_mall_pay

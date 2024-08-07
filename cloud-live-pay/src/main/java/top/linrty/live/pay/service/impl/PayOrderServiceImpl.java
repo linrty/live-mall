@@ -3,6 +3,7 @@ package top.linrty.live.pay.service.impl;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import jakarta.annotation.Resource;
@@ -56,6 +57,7 @@ public class PayOrderServiceImpl implements IPayOrderService {
 
 
     @Override
+    @DS("read_db")
     public PayOrder queryByOrderId(String orderId) {
         LambdaQueryWrapper<PayOrder> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(PayOrder::getOrderId, orderId);

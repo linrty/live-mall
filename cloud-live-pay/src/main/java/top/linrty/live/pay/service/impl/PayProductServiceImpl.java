@@ -1,6 +1,7 @@
 package top.linrty.live.pay.service.impl;
 
 import com.alibaba.nacos.client.naming.utils.CollectionUtils;
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import jakarta.annotation.Resource;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -76,6 +77,7 @@ public class PayProductServiceImpl implements IPayProductService {
     }
 
     @Override
+    @DS("read_db")
     public PayProductDTO getByProductId(Integer productId) {
         String cacheKey = payProviderCacheKeyBuilder.buildPayProductItemCache(productId);
         PayProductDTO payProductDTO = (PayProductDTO) redisTemplate.opsForValue().get(cacheKey);

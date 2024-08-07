@@ -4,6 +4,7 @@ import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.lang.UUID;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -77,6 +78,7 @@ public class RedPacketConfigServiceImpl implements IRedPacketConfigService {
     private PayClient payClient;
 
     @Override
+    @DS("read_db")
     public RedPacketConfig queryByAnchorId(Long anchorId) {
         LambdaQueryWrapper<RedPacketConfig> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(RedPacketConfig::getAnchorId, anchorId);
@@ -87,6 +89,7 @@ public class RedPacketConfigServiceImpl implements IRedPacketConfigService {
     }
 
     @Override
+    @DS("read_db")
     public RedPacketConfig queryByConfigCode(String code) {
         LambdaQueryWrapper<RedPacketConfig> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(RedPacketConfig::getConfigCode, code);

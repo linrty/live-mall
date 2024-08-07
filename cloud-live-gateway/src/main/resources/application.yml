@@ -10,3 +10,33 @@ spring:
             - Path=/user/** # 这里是以请求路径作为判断规则
           filters:
             - StripPrefix=1
+        - id: im
+          uri: lb://cloud-live-im
+          predicates:
+            - Path=/im/**
+          filters:
+            - StripPrefix=1
+        - id: living
+          uri: lb://cloud-live-living
+          predicates:
+            - Path=/living/**
+          filters:
+            - StripPrefix=1
+        - id: router
+          uri: lb://cloud-live-router
+          predicates:
+            - Path=/router/**
+          filters:
+            - StripPrefix=1
+        - id: shop
+          uri: lb://cloud-live-shop
+          predicates:
+            - Path=/shop/**
+          filters:
+            - StripPrefix=1
+        - id: pay
+          uri: lb://cloud-live-pay
+          predicates:
+            - Path=/pay/**
+          filters:
+            - StripPrefix=1

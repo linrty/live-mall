@@ -1,5 +1,6 @@
 package top.linrty.live.shop.service.impl;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import jakarta.annotation.Resource;
@@ -93,6 +94,7 @@ public class SkuStockInfoServiceImpl implements ISkuStockInfoService {
     }
 
     @Override
+    @DS("read_db")
     public SkuStockInfo queryBySkuId(Long skuId) {
         LambdaQueryWrapper<SkuStockInfo> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(SkuStockInfo::getSkuId, skuId);
@@ -102,6 +104,7 @@ public class SkuStockInfoServiceImpl implements ISkuStockInfoService {
     }
 
     @Override
+    @DS("read_db")
     public List<SkuStockInfo> queryBySkuIds(List<Long> skuIdList) {
         LambdaQueryWrapper<SkuStockInfo> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.in(SkuStockInfo::getSkuId, skuIdList);

@@ -1,5 +1,6 @@
 package top.linrty.live.shop.service.impl;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,7 @@ public class AnchorShopInfoServiceImpl implements IAnchorShopInfoService {
     @Resource
     private AnchorShopInfoMapper anchorShopInfoMapper;
     @Override
+    @DS("read_db")
     public List<Long> querySkuIdsByAnchorId(Long anchorId) {
         LambdaQueryWrapper<AnchorShopInfo> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(AnchorShopInfo::getAnchorId, anchorId);
@@ -33,6 +35,7 @@ public class AnchorShopInfoServiceImpl implements IAnchorShopInfoService {
     }
 
     @Override
+    @DS("read_db")
     public List<Long> queryAllValidAnchorId() {
         LambdaQueryWrapper<AnchorShopInfo> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(AnchorShopInfo::getStatus, StatusEnum.VALID_STATUS.getCode());
