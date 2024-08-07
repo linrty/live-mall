@@ -23,6 +23,15 @@ public class GiftProviderCacheKeyBuilder extends RedisKeyBuilder {
     private static final String LIVING_PK_SEND_SEQ = "living_pk_send_seq";
     private static final String LIVING_PK_IS_OVER = "living_pk_is_over";
 
+    private static final String RED_PACKET_LIST = "red_packet_list";
+    private static final String RED_PACKET_INIT_LOCK = "red_packet_init_lock";
+    private static final String RED_PACKET_TOTAL_GET_COUNT = "red_packet_total_get_count";
+    private static final String RED_PACKET_TOTAL_GET_PRICE = "red_packet_total_get_price";
+    private static final String RED_PACKET_MAX_GET_PRICE = "red_packet_max_get_price";
+    private static final String USER_TOTAL_GET_PRICE_CACHE = "red_packet_user_total_get_price";
+    private static final String RED_PACKET_PREPARE_SUCCESS = "red_packet_prepare_success";
+    private static final String RED_PACKET_NOTIFY = "red_packet_notify";
+
     public String buildLivingPkIsOver(Integer roomId) {
         return getPrefix() + LIVING_PK_IS_OVER + getSplitItem() + roomId;
     }
@@ -49,5 +58,37 @@ public class GiftProviderCacheKeyBuilder extends RedisKeyBuilder {
 
     public String buildGiftListLockCacheKey() {
         return getPrefix() + GIFT_LIST_LOCK;
+    }
+
+    public String buildRedPacketList(String code) {
+        return getPrefix() + RED_PACKET_LIST + getSplitItem() + code;
+    }
+
+    public String buildRedPacketInitLock(String code) {
+        return getPrefix() + RED_PACKET_INIT_LOCK + getSplitItem() + code;
+    }
+
+    public String buildRedPacketTotalGetCount(String code) {
+        return getPrefix() + RED_PACKET_TOTAL_GET_COUNT + getSplitItem() + (Math.abs(code.hashCode()) % 100);
+    }
+
+    public String buildRedPacketTotalGetPrice(String code) {
+        return getPrefix() + RED_PACKET_TOTAL_GET_PRICE + getSplitItem() + (Math.abs(code.hashCode()) % 100);
+    }
+
+    public String buildRedPacketMaxGetPrice(String code) {
+        return getPrefix() + RED_PACKET_MAX_GET_PRICE + getSplitItem() + (Math.abs(code.hashCode()) % 100);
+    }
+
+    public String buildUserTotalGetPrice(Long userId) {
+        return getPrefix() + USER_TOTAL_GET_PRICE_CACHE + getSplitItem() + userId;
+    }
+
+    public String buildRedPacketPrepareSuccess(String code) {
+        return getPrefix() + RED_PACKET_PREPARE_SUCCESS + getSplitItem() + code;
+    }
+
+    public String buildRedPacketNotify(String code) {
+        return getPrefix() + RED_PACKET_NOTIFY + getSplitItem() + code;
     }
 }

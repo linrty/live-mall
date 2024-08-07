@@ -34,4 +34,6 @@ public interface PayClient {
      */
     PayProductDTO getByProductId(Integer productId);
 
+    void incrCurrencyAccount(Long userId, int num);
+
 }

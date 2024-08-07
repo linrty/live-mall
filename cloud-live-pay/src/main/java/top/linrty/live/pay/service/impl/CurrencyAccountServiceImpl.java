@@ -68,6 +68,20 @@ public class CurrencyAccountServiceImpl implements ICurrencyAccountService {
 
     @Override
     public void incr(Long userId, int num) {
+        String key = payProviderCacheKeyBuilder.buildUserBalance(userId);
+        // 如果redis中存在缓存，基于redis的余额扣减
+        if(Boolean.TRUE.equals(redisTemplate.hasKey(key))){
+            redisTemplate.opsForValue().increment(key, num);
+        }
+        // DB层操作（包括余额增加和流水记录）
+        threadPoolExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                // 在异步线程池中完成数据库层的增加和流水记录，带有事务
+                // 异步操作：CAP中的AP，没有追求强一致性，保证最终一致性即可（BASE理论）
+                incrDBHandler(userId, num);
+            }
+        });
         currencyAccountMapper.incr(userId, num);
     }
 
@@ -168,6 +182,14 @@ public class CurrencyAccountServiceImpl implements ICurrencyAccountService {
         currencyAccountMapper.decr(userId, num);
         // 流水记录
         currencyTradeService.insertOne(userId, num * -1, TradeTypeEnum.SEND_GIFT_TRADE.getCode());
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void incrDBHandler(Long userId, int num) {
+        // 扣减余额(DB层)
+        currencyAccountMapper.incr(userId, num);
+        // 流水记录
+        currencyTradeService.insertOne(userId, num, TradeTypeEnum.SEND_GIFT_TRADE.getCode());
     }
 }
 

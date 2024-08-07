@@ -46,4 +46,9 @@ public class PayClientImpl implements PayClient {
     public PayProductDTO getByProductId(Integer productId) {
         return payProductService.getByProductId(productId);
     }
+
+    @Override
+    public void incrCurrencyAccount(Long userId, int num) {
+        currencyAccountService.incr(userId, num);
+    }
 }

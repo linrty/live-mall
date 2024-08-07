@@ -44,6 +44,9 @@ public class LivingRoomReqDTO implements Serializable {
     @Schema(description = "appId")
     private Integer appId;
 
+    @Schema(description = "红包配置码")
+    private String redPacketConfigCode;
+
     @Schema(description = "页码")
     private int page;
 

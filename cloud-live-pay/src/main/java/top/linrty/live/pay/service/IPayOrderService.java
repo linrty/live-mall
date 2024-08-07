@@ -1,5 +1,6 @@
 package top.linrty.live.pay.service;
 
+import top.linrty.live.common.domain.dto.pay.PayOrderDTO;
 import top.linrty.live.pay.domain.po.PayOrder;
 
 /**
@@ -29,4 +30,9 @@ public interface IPayOrderService {
      * 更新订单状态
      */
     boolean updateOrderStatus(String orderId, Integer status);
+
+    /**
+     * 支付回调请求的接口
+     */
+    boolean payNotify(PayOrderDTO payOrderDTO);
 }

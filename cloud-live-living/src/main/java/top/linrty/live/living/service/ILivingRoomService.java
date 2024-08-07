@@ -5,6 +5,7 @@ import top.linrty.live.common.domain.dto.im.IMOfflineDTO;
 import top.linrty.live.common.domain.dto.im.IMOnlineDTO;
 import top.linrty.live.common.domain.dto.living.LivingRoomReqDTO;
 import top.linrty.live.common.domain.dto.living.LivingRoomRespDTO;
+import top.linrty.live.common.domain.dto.living.OnlinePKReqDTO;
 import top.linrty.live.common.domain.vo.PageRespVO;
 import top.linrty.live.common.domain.vo.living.LivingRoomInitVO;
 import top.linrty.live.common.domain.vo.living.LivingRoomRespVO;
@@ -68,4 +69,23 @@ public interface ILivingRoomService {
      * 支持根据roomId查询出批量的userId（set）存储，3000个人，元素非常多，O(n)
      */
     List<Long> queryUserIdsByRoomId(LivingRoomReqDTO livingRoomReqDTO);
+    /**
+     * 当PK直播间连上线准备PK时，调用该请求
+     */
+    boolean onlinePK(OnlinePKReqDTO onlinePKReqDTO);
+
+    /**
+     * 用户在pk直播间下线
+     */
+    boolean offlinePk(LivingRoomReqDTO livingRoomReqDTO);
+
+    /**
+     * 根据roomId查询当前pk人是谁
+     *
+     * @param roomId
+     * @return
+     */
+    Long queryOnlinePkUserId(Integer roomId);
+
+    LivingRoomRespDTO queryByAnchorId(Long anchorId);
 }

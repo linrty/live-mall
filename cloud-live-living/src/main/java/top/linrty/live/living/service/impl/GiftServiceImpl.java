@@ -65,7 +65,7 @@ public class GiftServiceImpl implements IGiftService {
         giftDTO.setUuid(UUID.randomUUID().toString());
         CompletableFuture<SendResult<String, String>> sendResult = kafkaTemplate.send(
                 GiftTopicNames.SEND_GIFT,
-                // giftReqVO.getRoomId().toString(), //指定key，将相同roomId的送礼消息发送到一个分区，避免PK送礼消息出现乱序
+                giftReqDTO.getRoomId().toString(), //指定key，将相同roomId的送礼消息发送到一个分区，避免PK送礼消息出现乱序
                 JSON.toJSONString(giftDTO)
         );
         sendResult.whenComplete((v, e) -> {
