@@ -29,6 +29,7 @@
         <module>cloud-live-router</module>
         <module>cloud-live-living</module>
         <module>cloud-live-pay</module>
+        <module>cloud-live-shop</module>
     </modules>
 
     <properties>

@@ -51,4 +51,9 @@ public class PayClientImpl implements PayClient {
     public void incrCurrencyAccount(Long userId, int num) {
         currencyAccountService.incr(userId, num);
     }
+
+    @Override
+    public void decrCurrencyAccount(Long userId, int num) {
+        currencyAccountService.decr(userId, num);
+    }
 }

@@ -12,6 +12,7 @@ import org.redisson.api.RedissonClient;
 import org.springframework.data.redis.core.Cursor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ScanOptions;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -19,6 +20,7 @@ import top.linrty.live.api.clients.RouterClient;
 import top.linrty.live.api.clients.UserClient;
 import top.linrty.live.common.config.redis.RedisKeyTime;
 import top.linrty.live.common.constants.HTTPKeyConstants;
+import top.linrty.live.common.constants.living.GiftTopicNames;
 import top.linrty.live.common.domain.dto.PageReqDTO;
 import top.linrty.live.common.domain.dto.im.IMOfflineDTO;
 import top.linrty.live.common.domain.dto.im.IMOnlineDTO;
@@ -86,6 +88,9 @@ public class LivingRoomServiceImpl implements ILivingRoomService {
     @Resource
     private GiftProviderCacheKeyBuilder giftProviderCacheKeyBuilder;
 
+    @Resource
+    private KafkaTemplate<String, String> kafkaTemplate;
+
     @Override
     public Integer startingLiving(Integer type) {
         String userIdStr = RequestContext.get(HTTP_HEADER_USER_ID).toString();
@@ -103,6 +108,8 @@ public class LivingRoomServiceImpl implements ILivingRoomService {
         // 防止之前有空值缓存，这里做移除操作
         redisTemplate.delete(key);
         addRoomToRedis(livingRoom);
+        // 发送mq进行异步商品库存加载
+        kafkaTemplate.send(GiftTopicNames.START_LIVING_ROOM, String.valueOf(livingRoom.getAnchorId()));
         return livingRoom.getId();
     }
 

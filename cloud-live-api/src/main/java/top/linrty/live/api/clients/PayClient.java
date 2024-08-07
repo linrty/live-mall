@@ -36,4 +36,6 @@ public interface PayClient {
 
     void incrCurrencyAccount(Long userId, int num);
 
+    void decrCurrencyAccount(Long userId, int num);
+
 }
